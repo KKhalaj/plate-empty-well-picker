@@ -1,6 +1,4 @@
 import streamlit as st
-cat > app.py <<'PY'
-import streamlit as st
 import numpy as np
 import cv2
 from PIL import Image
@@ -30,7 +28,7 @@ if "last_click" not in st.session_state:
 if "prev_flip_h" not in st.session_state:
     st.session_state["prev_flip_h"] = flip_h
 
-# ✅ If flip changes, reset crop + selections (locked crop won't match flipped image)
+# If flip changes, reset crop + selections (locked crop won't match flipped image)
 if flip_h != st.session_state["prev_flip_h"]:
     st.session_state["prev_flip_h"] = flip_h
     st.session_state["crop_locked"] = False
@@ -185,14 +183,14 @@ overlay = draw_grid_and_selected(crop_bgr)
 labeled, pad_left, pad_top = add_labels(overlay)
 labeled_rgb = cv2.cvtColor(labeled, cv2.COLOR_BGR2RGB)
 
-# 🔴 Big orientation warning
+# BIG orientation warning
 st.markdown(
     "<h2 style='color:red; text-align:center;'>MAKE SURE A1 IS AT TOP LEFT</h2>",
     unsafe_allow_html=True
 )
 
 st.subheader("Step 2: Click wells to toggle (A–P / 1–24 shown)")
-display_w = min(labeled.shape[1], 1500)  # increase/decrease size on screen
+display_w = min(labeled.shape[1], 1600)  # slightly bigger than 1500
 scale_disp = labeled.shape[1] / display_w
 
 coords = streamlit_image_coordinates(
@@ -228,4 +226,3 @@ st.download_button(
     file_name="empty_wells.csv",
     mime="text/csv"
 )
-PY
