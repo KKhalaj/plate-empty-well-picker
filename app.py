@@ -1,4 +1,4 @@
-cd ~/plate_tool
+import streamlit as st
 cat > app.py <<'PY'
 import streamlit as st
 import numpy as np
