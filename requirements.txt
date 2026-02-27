@@ -1,0 +1,6 @@
+streamlit
+streamlit-cropper
+streamlit-image-coordinates
+pillow
+opencv-python
+numpy
